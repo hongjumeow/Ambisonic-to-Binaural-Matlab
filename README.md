@@ -21,13 +21,13 @@ This script decodes **higher-order ambisonic room impulse responses** (HOA RIRs)
 
 * SFS Toolbox (SFS_start)
 
-* Real SH toolbox providing getSH (e.g., Spherical-Harmonic-Transform)
+* Real SH toolbox providing getSH (<https://github.com/polarch/Spherical-Harmonic-Transform/blob/master/getSH.m>)
 
 * SOFA API for MATLAB (sofaread)
 
-* SARITA Toolbox <https://github.com/AudioGroupCologne/SARITA>
+* SARITA Toolbox (<https://github.com/AudioGroupCologne/SARITA>)
 
-* HRTF SOFA file (I am using RIEC HRIRs from <https://www.riec.tohoku.ac.jp/pub/hrtf/hrtf_data.html>)
+* HRTF SOFA file (I am using HRIRs from <https://www.riec.tohoku.ac.jp/pub/hrtf/hrtf_data.html>)
 
 * HOA RIRs in .h5 with datasets at /spatial_ir/<uuid> shaped [T × (N+1)^2]
 
