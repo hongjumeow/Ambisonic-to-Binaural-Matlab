@@ -27,9 +27,10 @@ This script decodes **higher-order ambisonic room impulse responses** (HOA RIRs)
 
 * SARITA Toolbox <https://github.com/AudioGroupCologne/SARITA>
 
-* HRTF SOFA file (example: RIEC HRIR subject_001)
+* HRTF SOFA file (I am using RIEC HRIRs from <https://www.riec.tohoku.ac.jp/pub/hrtf/hrtf_data.html>)
 
 * HOA RIRs in .h5 with datasets at /spatial_ir/<uuid> shaped [T × (N+1)^2]
+
 
 
 ## Quick start
