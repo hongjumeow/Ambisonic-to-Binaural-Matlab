@@ -1,5 +1,5 @@
 # MatLab Implementation for Binaural Decoding from Ambisonics
-This script decodes higher-order ambisonic room impulse responses (HOA RIRs) stored in HDF5 (.h5) to binaural BRIRs (.wav).
+This script decodes **higher-order ambisonic room impulse responses** (HOA RIRs) stored in HDF5 (.h5) to **Binaural RIRs** (.wav).
 
 
 ## Pipeline:
