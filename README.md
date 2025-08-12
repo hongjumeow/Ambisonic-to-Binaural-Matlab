@@ -50,7 +50,7 @@ data_root = '\\server\path\to\TrebleSDK_Results\Apartment_45';
 
 * **HOA order** = 8 → 81 channels
 
-* **Decode (coarse) grid**: az=0:15:345, el=−30:30:60
+* **Decode (coarse) grid**: Uniformly mapped on Lebedev Sphere (266)
 
 * **Target (dense) grid** for SARITA: az=0:10:350, el=−30:10:60
 

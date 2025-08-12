@@ -14,23 +14,14 @@ function Ysn3d = n3d_to_sn3d(Yn3d, order)
 end
 
 %% Spherical Transform
-% Define decoding grid
-[az_grid, el_grid] = meshgrid(0:15:345, -30:30:60);  % az x el grid
-az_list = az_grid(:);
-el_list = el_grid(:);
+% Use a uniform full-sphere grid (Lebedev)
+leb = getLebedevSphere(266);             % ~uniform, decent K
+[az, el, ~] = cart2sph(leb.x, leb.y, leb.z);
+dirs = [wrapTo2Pi(az), pi/2 - el];       % [K x 2], az in [0,2pi), colat
 
-% Convert to SH-compatible dirs
-az_rad = deg2rad(az_list);
-el_rad = deg2rad(el_list);
-colat_rad = pi/2 - el_rad;
-dirs = [wrapTo2Pi(az_rad), colat_rad];  % [1368 x 2]
-
-az_deg_list = rad2deg(dirs(:,1));                 % [0, 360) azimuth in degrees
-el_deg_list = rad2deg(pi/2 - dirs(:,2));          % convert colatitude to elevation
-
-% SH order and basis
+% Build SH matrix in SAME normalization as HOA
 order = 8;
-Y = getSH(order, dirs, 'real'); % Spherical Harmonic basis for all dirs
+Y = getSH(order, dirs, 'real');  % [K x 81]; check your getSH signature
 
 Y = n3d_to_sn3d(Y, order);
 
@@ -49,26 +40,17 @@ dirs_hrtf = [wrapTo2Pi(az_cipic), colat_cipic];  % for SH matching
 az_step = 10;
 el_step = 10;
 az_tgt = 0:az_step:350;           % [0, 350) deg
-el_tgt = -30:el_step:60;          % [-30, 80] deg
+el_tgt = -30:el_step:60;          % [-30, 60] deg
 
 [az_tgt_grid, el_tgt_grid] = meshgrid(az_tgt, el_tgt);
 az_tgt_list = az_tgt_grid(:);
 el_tgt_list = el_tgt_grid(:);
 
-% Optional: collapse azimuth at the zenith (el = 90 deg), since azimuth is undefined there.
-is_zenith = abs(el_tgt_list - 90) < 1e-9;
-az_tgt_list(is_zenith) = 0;
-
 % Convert to SH-compatible [az, colat] in radians
 az_tgt_rad  = deg2rad(az_tgt_list);
 el_tgt_rad  = deg2rad(el_tgt_list);
 colat_tgt   = pi/2 - el_tgt_rad;
-target_dirs = [wrapTo2Pi(az_tgt_rad), colat_tgt];   % size: [252 x 2]
-
-% % Or Lebedev Sphere
-% leb = getLebedevSphere(194); % Not many more than (N+1)^2 = 25
-% [target_az, target_el, ~] = cart2sph(leb.x, leb.y, leb.z);
-% target_dirs = [wrapTo2Pi(target_az), pi/2 - target_el];
+target_dirs = [wrapTo2Pi(az_tgt_rad), colat_tgt];   % size: [360 x 2]
 
 %% Get all .h5 ambisonic files
 data_root = 'your-directory-to-ambisonic-h5files';
