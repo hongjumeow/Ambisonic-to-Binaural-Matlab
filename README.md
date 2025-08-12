@@ -25,6 +25,8 @@ This script decodes **higher-order ambisonic room impulse responses** (HOA RIRs)
 
 * SOFA API for MATLAB (sofaread)
 
+* SARITA Toolbox <https://github.com/AudioGroupCologne/SARITA>
+
 * HRTF SOFA file (example: RIEC HRIR subject_001)
 
 * HOA RIRs in .h5 with datasets at /spatial_ir/<uuid> shaped [T × (N+1)^2]
